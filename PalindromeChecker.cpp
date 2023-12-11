@@ -15,6 +15,9 @@ int main()
         cout << "Number is a palindrome!";}
     else{
         cout << "Number is NOT a palindrome";}
+    for (int i = 0; i <= 9; i++){
+        cout << "r";
+    }
     return 0;
 }
 
