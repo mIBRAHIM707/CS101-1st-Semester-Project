@@ -22,6 +22,50 @@ void setUP(){
     score = 0;
 }
 
+void gameDraw(){
+    system("cls");
+    for (int i = 0; i < width + 2; i++){
+        cout << "#";
+    }
+    cout << endl;
+
+    for (int i = 0; i < height; i++){
+		for (int j = 0; j < width; j++){
+			if (j == 0){
+                cout << "#";
+            }
+            if (i == snakeY && j == snakeX){
+                cout << "O";
+            }
+            else if (i == orb_x && j == orb_y){
+                cout << "@";
+            }
+            else{
+                bool print = false;
+                for (int k = 0; k < tailNum; k++){
+                    if(tailX[k] == j && tailY[k] == i){
+                        cout << "o";
+                        print = true;
+                    }
+                }
+                if(!print){
+                    cout << " ";
+                }
+            }
+            if (j == width - 1){
+                cout << "#";
+            }   
+		}
+		cout << endl;
+	}
+
+    for (int i = 0; i < width + 2; i++){
+        cout << "#";
+    }
+    cout << endl;
+    cout << "Score: " << score << endl;
+}
+
 int main()
 {
     
