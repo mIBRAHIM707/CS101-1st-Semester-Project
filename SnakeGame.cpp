@@ -66,6 +66,29 @@ void gameDraw(){
     cout << "Score: " << score << endl;
 }
 
+void userInput(){
+    if (_kbhit()){
+        switch (_getch())
+        {
+        case 'a':
+            dir = LEFT;
+            break;
+        case 'w':
+            dir = UP;
+            break;
+        case 's':
+            dir = DOWN;
+            break;
+        case 'd':
+            dir = RIGHT;
+            break;
+        case 'x':
+            gameOver = true;
+            break;
+        }
+    }
+}
+
 int main()
 {
     
