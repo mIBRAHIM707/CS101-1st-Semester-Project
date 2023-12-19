@@ -89,9 +89,64 @@ void userInput(){
     }
 }
 
+void gameMechanics() {
+    int prevX = tailX[0];
+    int prevY = tailY[0];
+    int prev2X, prev2Y;
+    tailX[0] = snakeX;
+    tailY[0] = snakeY;
+    for (int i = 1; i < tailNum; i++){
+        prev2X = tailX[i];
+        prev2Y = tailY[i];
+        tailX[i] = prevX;
+        tailY[i] = prevY;
+        prevX = prev2X;
+        prevY = prev2Y;
+    }
+    switch (dir) {
+        case LEFT:
+            snakeX--;
+            break;
+        case RIGHT:
+            snakeX++;
+            break;
+        case UP:
+            snakeY--;
+            break;
+        case DOWN:
+            snakeY++;
+            break;
+        default:
+            break;
+    }
+
+    if (snakeX >= width || snakeX < 0 || snakeY >= height || snakeY < 0) {
+        gameOver = true;
+    }
+    for(int i = 0; i < tailNum; i++){
+        if(tailX[i] == snakeX && tailY[i] == snakeY){
+            gameOver = true;
+        }
+    }
+    if (snakeX == orb_y && snakeY == orb_x) {
+        score += 10;
+        orb_x = rand() % width;
+        orb_y = rand() % height;
+        tailNum++;
+    }
+}
+
+
 int main()
 {
-    
+    srand(time(0));
+    setUP();
+    while(!gameOver){
+        gameDraw();
+        userInput();
+        gameMechanics();
+
+    }
     
     return 0;
 }
